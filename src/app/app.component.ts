@@ -1,15 +1,9 @@
 import { Component } from '@angular/core';
+import { LunchService } from './lunch.service'
 
 @Component({
   selector: 'app-root',
-  template: `
-    <h1>
-      Welcome to {{title}}!!
-    </h1>
-    <router-outlet></router-outlet>
-  `,
-  styles: []
+  templateUrl: './app.component.html',
+  providers: [LunchService]
 })
-export class AppComponent {
-  title = 'app';
-}
+export class AppComponent { }
