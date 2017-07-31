@@ -20,10 +20,10 @@ If it's a success you should be able to see the app running on [`http://localhos
 
 ## Tasks
 
-There are some things that would be great to do, sorted by complexity:
+Here's a list of things that would be great to do. 
 
-- find & fix bug on upvote
 - sort lunch list by number of upvotes
+- find & fix nasty upvote bug
 - disallow to add lunch place that's already there (with the same name)
 - add button which will reset all upvotes to zero
 - add an icon/button to remove a particular lunch place
