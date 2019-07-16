@@ -2,17 +2,17 @@
 
 This tool might be used by Jumpshooters to decide when to go for lunch (when Avast canteen is closed, anyway).
 
-It is built with [Angular 4](https://angular.io/) and [UIkit 3](https://getuikit.com/).
+It is built with [Angular 8](https://angular.io/) and [UIkit 3](https://getuikit.com/).
 
 ## How to run this
 
 You need [Yarn](https://yarnpkg.com) to install dependencies. Get it and then run it in the project root by typing:
 
-`yarn install`
+`yarn`
 
 This should fetch all that's needed. Now kick start the server by issuing:
 
-`yarn run start`
+`yarn start`
 
 This will build the app and then serve it. 
 
