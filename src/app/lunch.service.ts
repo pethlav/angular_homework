@@ -1,5 +1,8 @@
+
+import {of as observableOf,  Observable } from 'rxjs';
+
+import {tap, delay} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 
 let _ID = 1;
 
@@ -36,45 +39,45 @@ export class LunchService {
 
   getLunchList(): Observable<ILunch[]> {
     const clone = JSON.parse(JSON.stringify(this.lunchStore));
-    return Observable.of(clone).delay(FAKE_API_LATENCY());
+    return observableOf(clone).pipe(delay(FAKE_API_LATENCY()));
   }
 
   addLunch(name: string): Observable<any> {
-    return Observable.of(null).delay(FAKE_API_LATENCY()).do(() => {
+    return observableOf(null).pipe(delay(FAKE_API_LATENCY()),tap(() => {
       this.lunchStore.push({
         id: _ID++,
         name,
         upvotes: 0
       })
-    });
+    }),);
   }
 
   removeLunch(id: number): Observable<any> {
-    return Observable.of(null).delay(FAKE_API_LATENCY()).do(() => {
+    return observableOf(null).pipe(delay(FAKE_API_LATENCY()),tap(() => {
       const lunchToRemove = this.lunchStore.find(lunch => lunch.id === id);
       if (lunchToRemove) {
         this.lunchStore = this.lunchStore.filter(lunch => lunch.id !== id);
       } else {
         throw new Error("Trying to remove non-existing lunch!");
       }
-    });
+    }),);
   }
 
   upvoteLunch(id: number): Observable<any> {
-    return Observable.of(null).delay(FAKE_API_LATENCY()).do(() => {
+    return observableOf(null).pipe(delay(FAKE_API_LATENCY()),tap(() => {
       const lunchToUpvote = this.lunchStore.find(lunch => lunch.id === id);
       if (lunchToUpvote) {
         lunchToUpvote.upvotes++;
       } else {
         throw new Error("Trying to upvote non-existing lunch!");
       }
-    });
+    }),);
   }
 
   resetUpvotes(): Observable<any> {
-    return Observable.of(null).delay(FAKE_API_LATENCY()).do(() => {
+    return observableOf(null).pipe(delay(FAKE_API_LATENCY()),tap(() => {
       this.lunchStore = this.lunchStore.map(lunch => Object.assign({}, lunch, { upvotes: 0 }));
-    }); 
+    }),); 
   }
 
 }
