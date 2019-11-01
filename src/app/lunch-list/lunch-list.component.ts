@@ -3,6 +3,7 @@ import {Store} from "@ngxs/store";
 import {LunchState} from "../store/lunch-store";
 import {ILunch} from "../model/lunch-model";
 import {IncrementUpvotes} from "../store/lunch-actions";
+import {sortLunch} from "../helpers/lunch-helpers";
 
 @Component({
   selector: 'app-lunch-list',
@@ -16,7 +17,7 @@ export class LunchListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.select(LunchState.getLunches).subscribe(lunches => this.lunchList = lunches);
+    this.store.select(LunchState.getLunches).subscribe(lunches => this.lunchList = sortLunch(lunches));
   }
 
   upvoteLunch(lunchName: string) {

@@ -1,6 +1,7 @@
 import {defaultLunches, ILunch} from "../model/lunch-model";
 import {Action, Selector, State, StateContext} from "@ngxs/store";
 import {AddLunch, IncrementUpvotes} from "./lunch-actions";
+import {sortLunch} from "../helpers/lunch-helpers";
 
 export class LunchModel {
   lunches: ILunch[];
@@ -22,6 +23,7 @@ export class LunchState {
     const stateCopy = {...getState()};
     stateCopy.lunches.filter(lunch => lunch.name === action.payload)
       .forEach(lunch => lunch.upvotes = ++lunch.upvotes);
+    stateCopy.lunches = sortLunch(stateCopy.lunches);
 
     patchState({
       lunches: stateCopy.lunches,
