@@ -6,6 +6,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LunchListComponent } from './lunch-list/lunch-list.component';
 import { AddLunchComponent } from './add-lunch/add-lunch.component';
+import {NgxsModule} from "@ngxs/store";
+import {LunchState} from "./store/lunch-store";
+import {NgxsReduxDevtoolsPluginModule} from "@ngxs/devtools-plugin";
+import {NgxsLoggerPluginModule} from "@ngxs/logger-plugin";
 
 @NgModule({
   declarations: [
@@ -16,7 +20,11 @@ import { AddLunchComponent } from './add-lunch/add-lunch.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    NgxsModule.forRoot([]),
+    NgxsModule.forFeature([ LunchState ]),
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

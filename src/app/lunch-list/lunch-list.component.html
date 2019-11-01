@@ -2,7 +2,7 @@
     <li *ngFor="let lunch of lunchList; let i = index">
         {{ lunch.name }}
         <span class="uk-float-right">
-            <a uk-icon="icon: heart;" title="Love it!" uk-tooltip="pos: left" (click)="upvoteLunch(i)"></a>
+            <a uk-icon="icon: heart;" title="Love it!" uk-tooltip="pos: left" (click)="upvoteLunch(lunch.name)"></a>
             {{ lunch.upvotes }}
         </span>
     </li>

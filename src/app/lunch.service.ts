@@ -1,8 +1,7 @@
+import {Observable, of as observableOf} from 'rxjs';
 
-import {of as observableOf,  Observable } from 'rxjs';
-
-import {tap, delay} from 'rxjs/operators';
-import { Injectable } from '@angular/core';
+import {delay, tap} from 'rxjs/operators';
+import {Injectable} from '@angular/core';
 
 let _ID = 1;
 
@@ -35,7 +34,8 @@ export class LunchService {
     },
   ]
 
-  constructor() { }
+  constructor() {
+  }
 
   getLunchList(): Observable<ILunch[]> {
     const clone = JSON.parse(JSON.stringify(this.lunchStore));
@@ -43,7 +43,7 @@ export class LunchService {
   }
 
   addLunch(name: string): Observable<any> {
-    return observableOf(null).pipe(delay(FAKE_API_LATENCY()),tap(() => {
+    return observableOf(null).pipe(delay(FAKE_API_LATENCY()), tap(() => {
       this.lunchStore.push({
         id: _ID++,
         name,
@@ -53,7 +53,7 @@ export class LunchService {
   }
 
   removeLunch(id: number): Observable<any> {
-    return observableOf(null).pipe(delay(FAKE_API_LATENCY()),tap(() => {
+    return observableOf(null).pipe(delay(FAKE_API_LATENCY()), tap(() => {
       const lunchToRemove = this.lunchStore.find(lunch => lunch.id === id);
       if (lunchToRemove) {
         this.lunchStore = this.lunchStore.filter(lunch => lunch.id !== id);
@@ -64,7 +64,7 @@ export class LunchService {
   }
 
   upvoteLunch(id: number): Observable<any> {
-    return observableOf(null).pipe(delay(FAKE_API_LATENCY()),tap(() => {
+    return observableOf(id).pipe(delay(FAKE_API_LATENCY()), tap(() => {
       const lunchToUpvote = this.lunchStore.find(lunch => lunch.id === id);
       if (lunchToUpvote) {
         lunchToUpvote.upvotes++;
@@ -75,9 +75,9 @@ export class LunchService {
   }
 
   resetUpvotes(): Observable<any> {
-    return observableOf(null).pipe(delay(FAKE_API_LATENCY()),tap(() => {
-      this.lunchStore = this.lunchStore.map(lunch => Object.assign({}, lunch, { upvotes: 0 }));
-    }),); 
+    return observableOf(null).pipe(delay(FAKE_API_LATENCY()), tap(() => {
+      this.lunchStore = this.lunchStore.map(lunch => Object.assign({}, lunch, {upvotes: 0}));
+    }),);
   }
 
 }

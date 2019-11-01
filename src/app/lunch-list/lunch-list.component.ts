@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import UIkit from 'uikit';
 
-import { LunchService, ILunch } from '../lunch.service';
+import { LunchService} from '../lunch.service';
+import {Store} from "@ngxs/store";
+import {LunchState} from "../store/lunch-store";
+import {ILunch} from "../model/lunch-model";
+import {IncrementUpvotes} from "../store/lunch-actions";
 
 @Component({
   selector: 'app-lunch-list',
@@ -11,24 +15,22 @@ export class LunchListComponent implements OnInit {
 
   lunchList: ILunch[];
 
-  constructor(private lunchService: LunchService) { }
+  constructor(private store: Store,
+              private lunchService: LunchService) { }
 
   ngOnInit() {
-    
+    this.lunchList = this.store.selectSnapshot(LunchState.getLunches);
+
     // this is ugly :-(
-    setInterval(() => {
-      this.loadLunchList();
-    }, 1000);
+    // setInterval(() => {
+    //   this.loadLunchList();
+    // }, 1000);
 
   }
 
-  upvoteLunch(lunchId: number) {
-    this.lunchService.upvoteLunch(lunchId).subscribe(() => {
-      UIkit.notification('Lunch upvoted!', { status: 'success' });
-    }, error => {
-      UIkit.notification('Failed to upvote lunch :-(', { status: 'danger' });
-      console.error('failed to upvote lunch');
-    })
+  upvoteLunch(lunchName: string) {
+    console.log("======== upvoteLunch IN");
+    this.store.dispatch(new IncrementUpvotes(lunchName));
   }
 
   private loadLunchList() {
