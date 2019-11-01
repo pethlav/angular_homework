@@ -1,9 +1,7 @@
-import { Component } from '@angular/core';
-import { LunchService } from './lunch.service'
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  providers: [LunchService]
 })
 export class AppComponent { }

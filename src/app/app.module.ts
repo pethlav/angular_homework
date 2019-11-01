@@ -10,6 +10,7 @@ import {NgxsModule} from "@ngxs/store";
 import {LunchState} from "./store/lunch-store";
 import {NgxsReduxDevtoolsPluginModule} from "@ngxs/devtools-plugin";
 import {NgxsLoggerPluginModule} from "@ngxs/logger-plugin";
+import {LunchService} from "./services/lunch.service";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,9 @@ import {NgxsLoggerPluginModule} from "@ngxs/logger-plugin";
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    LunchService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
