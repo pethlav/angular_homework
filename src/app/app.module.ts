@@ -11,12 +11,14 @@ import {LunchState} from "./store/lunch-store";
 import {NgxsReduxDevtoolsPluginModule} from "@ngxs/devtools-plugin";
 import {NgxsLoggerPluginModule} from "@ngxs/logger-plugin";
 import {LunchService} from "./services/lunch.service";
+import {LunchSortPipe} from "./pipes/lunch-sort-pipe";
 
 @NgModule({
   declarations: [
     AppComponent,
     LunchListComponent,
-    AddLunchComponent
+    AddLunchComponent,
+    LunchSortPipe
   ],
   imports: [
     BrowserModule,

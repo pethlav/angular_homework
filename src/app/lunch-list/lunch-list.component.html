@@ -1,5 +1,5 @@
 <ul class="uk-list uk-list-divider uk-list-large">
-    <li *ngFor="let lunch of lunchList; let i = index">
+    <li *ngFor="let lunch of lunchList$ | async | lunchSort">
         {{ lunch.name }}
         <span class="uk-float-right">
             <a uk-icon="icon: heart;" title="Love it!" uk-tooltip="pos: left" (click)="upvoteLunch(lunch.name)"></a>

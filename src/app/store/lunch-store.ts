@@ -1,7 +1,7 @@
 import {defaultLunches, ILunch} from "../model/lunch-model";
 import {Action, Selector, State, StateContext} from "@ngxs/store";
 import {AddLunch, IncrementUpvotes} from "./lunch-actions";
-import {sortLunch} from "../helpers/lunch-helpers";
+import cloneDeep from 'lodash-es/cloneDeep';
 
 export class LunchModel {
   lunches: ILunch[];
@@ -20,10 +20,9 @@ export class LunchState {
 
   @Action(IncrementUpvotes)
   updateLunchUpvotes({getState, patchState}: StateContext<LunchModel>, action: IncrementUpvotes) {
-    const stateCopy = {...getState()};
+    const stateCopy = cloneDeep(getState());
     stateCopy.lunches.filter(lunch => lunch.name === action.payload)
       .forEach(lunch => lunch.upvotes = ++lunch.upvotes);
-    stateCopy.lunches = sortLunch(stateCopy.lunches);
 
     patchState({
       lunches: stateCopy.lunches,
