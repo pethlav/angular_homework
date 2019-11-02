@@ -1,7 +1,11 @@
 <ul class="uk-list uk-list-divider uk-list-large">
-    <li *ngFor="let lunch of lunchList$ | async | lunchSort">
-        {{ lunch.name }}
-        <span class="uk-float-right">
+    <li *ngFor="let lunch of lunchList$ | async | lunchSort" class="list-item-container">
+        <span>
+            {{ lunch.name }}
+            <a uk-icon="icon: trash;" title="Remove" uk-tooltip="pos: right" (click)="removeLunch(lunch.name)"></a>
+        </span>
+        <span class="list-item-filler"></span>
+        <span>
             <a uk-icon="icon: heart;" title="Love it!" uk-tooltip="pos: left" (click)="upvoteLunch(lunch.name)"></a>
             {{ lunch.upvotes }}
         </span>

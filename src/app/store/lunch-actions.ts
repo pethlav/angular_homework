@@ -13,3 +13,10 @@ export class AddLunch {
   constructor(public payload: string) {
   }
 }
+
+export class RemoveLunch {
+  static readonly type = statePrefix + 'Remove Lunch';
+
+  constructor(public payload: string) {
+  }
+}
