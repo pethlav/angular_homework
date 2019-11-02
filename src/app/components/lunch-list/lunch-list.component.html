@@ -2,7 +2,7 @@
     <li *ngFor="let lunch of lunchList$ | async | lunchSort" class="list-item-container">
         <span>
             {{ lunch.name }}
-            <a uk-icon="icon: trash;" title="Remove" uk-tooltip="pos: right" (click)="removeLunch(lunch.name)"></a>
+            <a uk-icon="icon: trash; ratio: 0.8" title="Remove" uk-tooltip="pos: right" (click)="removeLunch(lunch.name)"></a>
         </span>
         <span class="list-item-filler"></span>
         <span>

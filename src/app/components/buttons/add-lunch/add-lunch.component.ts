@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {LunchService} from "../services/lunch.service";
+import {LunchService} from "../../../services/lunch.service";
 
 @Component({
   selector: 'app-add-lunch',

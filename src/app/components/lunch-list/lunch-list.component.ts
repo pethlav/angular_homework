@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from "@ngxs/store";
-import {LunchState} from "../store/lunch-store";
-import {ILunch} from "../model/lunch-model";
-import {IncrementUpvotes, RemoveLunch} from "../store/lunch-actions";
+import {LunchState} from "../../store/lunch-store";
+import {ILunch} from "../../model/lunch-model";
+import {IncrementUpvotes, RemoveLunch} from "../../store/lunch-actions";
 import {Observable} from "rxjs";
 
 @Component({

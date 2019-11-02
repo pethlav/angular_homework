@@ -20,3 +20,10 @@ export class RemoveLunch {
   constructor(public payload: string) {
   }
 }
+
+export class ResetUpvotes {
+  static readonly type = statePrefix + 'Reset Upvotes';
+
+  constructor() {
+  }
+}

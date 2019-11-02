@@ -1,7 +1,7 @@
 import UIkit from 'uikit';
 import {Injectable} from '@angular/core';
 import {LunchState} from "../store/lunch-store";
-import {AddLunch} from "../store/lunch-actions";
+import {AddLunch, ResetUpvotes} from "../store/lunch-actions";
 import {Store} from "@ngxs/store";
 
 @Injectable()
@@ -19,23 +19,9 @@ export class LunchService {
     }
   }
 
-  // removeLunch(id: number): Observable<any> {
-  //   return observableOf(null).pipe(delay(FAKE_API_LATENCY()), tap(() => {
-  //     const lunchToRemove = this.lunchStore.find(lunch => lunch.id === id);
-  //     if (lunchToRemove) {
-  //       this.lunchStore = this.lunchStore.filter(lunch => lunch.id !== id);
-  //     } else {
-  //       throw new Error("Trying to remove non-existing lunch!");
-  //     }
-  //   }),);
-  // }
-
-
-  // resetUpvotes(): Observable<any> {
-  //   return observableOf(null).pipe(delay(FAKE_API_LATENCY()), tap(() => {
-  //     this.lunchStore = this.lunchStore.map(lunch => Object.assign({}, lunch, {upvotes: 0}));
-  //   }),);
-  // }
+  resetUpvotes() {
+    this.store.dispatch(new ResetUpvotes());
+  }
 
   private static displayAddNotification(success: boolean) {
     success
