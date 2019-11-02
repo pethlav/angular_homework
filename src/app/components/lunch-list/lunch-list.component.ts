@@ -29,5 +29,4 @@ export class LunchListComponent implements OnInit {
     this.store.dispatch(new RemoveLunch(lunchName));
   }
 
-
 }
